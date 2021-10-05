@@ -17,20 +17,25 @@ if(isset($_POST['enviar'])){
     }else{
             echo "Seu nome é:{$_POST['nome']}<br>";
             echo "Seu e-mail é:{$_POST['email']}<br>";
-            echo "Sua mensagem é:{$_POST['mensagem']}<br>";
+            echo "Sua mensagem é: <pre>{$_POST['mensagem']}</pre>";
         }
  }else{
-    echo "Pela barra de endereço";
-}
-
 ?>
-        <h1>Formulário de Contato</h1>
+
+    <h1>Formulário de Contado</h1>
         <form action="/" method="post">
             Nome: <input type="text" name="nome"><br>
             E-mail: <input type="text" name="email"><br>
             Mensgem: <br><textarea name="mensagem" rows="8" cols="80"></textarea>
             <br>
             <input type="submit" name="enviar" value="Enviar">
-        </form>    
+        </form>
+<?php
+
+}
+
+?>
+
+    
     </body> 
 </html>
