@@ -1,8 +1,12 @@
 <?php
 
-    $fb = fopen("dados.txt", "w+");
-    fwrite( $fb, "Junior-Unix");
-    fclose($fb);
 
+if(file_exists("dados.txt")){
+    $fb = fopen("dados.txt", "a+");
+    fwrite( $fb, "Junior-Unix\n");
+    fclose($fb);
+}else{
+    echo "Não existe.";
+}
 
 ?>
