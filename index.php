@@ -71,7 +71,8 @@ if(isset($_POST['enviar'])):
                   </tr>
                 </tbody>
               </table>
-<?php require_onde("gravar.php"); ?>
+
+<?php require_once("gravar.php"); ?>
 
 
               <p>
