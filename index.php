@@ -30,6 +30,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js" integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u" crossorigin="anonymous"></script>
    
   </body>
+  <div class="container">
     <?php
 
 if(isset($_POST['enviar'])){
@@ -40,27 +41,70 @@ if(isset($_POST['enviar'])){
     }elseif(empty($_POST['mensagem'])){
         echo "Preencha sua mensagem";
     }else{
-            echo "Seu nome é:{$_POST['nome']}<br>";
+/*             echo "Seu nome é:{$_POST['nome']}<br>";
             echo "Seu e-mail é:{$_POST['email']}<br>";
-            echo "Sua mensagem é: <pre>{$_POST['mensagem']}</pre>";
-        }
+            echo "Sua mensagem é: <pre>{$_POST['mensagem']}</pre>"; */
+?>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Mensagem</th> 
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td><?php echo $_POST['nome']?></td>
+                    <td><?php echo $_POST['email']?></td>
+                    <td>
+                      <pre><?php echo $_POST['mensagem']?></pre>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+<?php
+
+
+          }
  }else{
 ?>
 
-    <h1>Formulário de Contado</h1>
-        <form action="/" method="post">
-            Nome: <input type="text" name="nome"><br>
-            E-mail: <input type="text" name="email"><br>
-            Mensagem: <br><textarea name="mensagem" rows="8" cols="80"></textarea>
-            <br>
-            <input class="btn btn-success" type="submit" name="enviar" value="Enviar">
-        </form>
-<?php
 
+    <h1 class="text-center">Formulário de Contado</h1>
+      <form action="/" method="post">
+      <div class="form-group">  
+        <label>Nome</label>
+        <input type="text" name="nome" class="form-control" aria-describedby="emailHelp">
+      </div>
+
+      <div class="form-group">  
+        <label>E-mail</label>
+        <input type="text" name="email" class="form-control">
+      </div>
+
+      <div class="form-group">  
+        <label>Mensagem</label>
+        <textarea type="text" name="mensagem" class="form-control"></textarea>
+      </div>
+
+<!--       <div class="form-group form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">  
+        <label class"form-check-label" for="exampleCheck1">Enviar</label>
+      </div> -->
+      <button type="submit" class="btn btn-primary" name="enviar">Enviar</button>
+      </form>
+
+
+<?php
+  
 }
 
 ?>
-
+</div>
     
 
   </body>
