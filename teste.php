@@ -1,11 +1,16 @@
 <?php
 
-$conexao = new mysqli("localhost", "junior", "0008");
+$conexao = new mysqli("localhost", "root", "0008", "unix");
 
-if($conexao){
-    echo "Conectado";
-}else{
-    echo "Erro ao conectar!";
+if(!$conexao->connect_error){
+    
+    $sql = "INSERT INTO dados (id, nome, email, data) VALUES (NULL, 'Yo', 'yo@oy.go', NOW())";
+    
+        if($conexao->query($sql) === TRUE){
+            echo "Inseridos.";
+        }else{
+            echo "Erro ao conectar/inserir dados!";
+    }
 }
 
 
