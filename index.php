@@ -38,7 +38,7 @@
   <div class="container">
     <?php
 
-if(isset($_POST['enviar'])){
+if(isset($_POST['enviar'])):
     if(in_array(NULL, $_POST)):
 ?>
         <div class="alert alert-primary text-center" role="alert">
@@ -81,7 +81,7 @@ if(isset($_POST['enviar'])){
 
 
     endif;
- }else{
+  else:
 ?>
 
 
@@ -112,7 +112,7 @@ if(isset($_POST['enviar'])){
 
 <?php
   
-}
+  endif;
 
 ?>
 </div>
