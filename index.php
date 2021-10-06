@@ -48,8 +48,8 @@ if(isset($_POST['enviar'])):
           <a href="/">Voltar</a>
         </p>
 <?php
-    else:
-        extract($_POST);
+  else: 
+    extract($_POST);
 ?>
               <table class="table table-bordered">
                 <thead>
@@ -77,12 +77,7 @@ if(isset($_POST['enviar'])):
               </p>
             
 
-<?php
-
-
-    endif;
-  else:
-?>
+<?php endif; else: ?>
 
 
     <h1 class="text-center">Formulário de Contado</h1>
@@ -110,11 +105,7 @@ if(isset($_POST['enviar'])):
       </form>
 
 
-<?php
-  
-  endif;
-
-?>
+<?php endif; ?>
 </div>
     
 
