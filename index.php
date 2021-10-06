@@ -20,6 +20,7 @@
   <style media="screen">
     body{background: #504477; color: #FFF;}
     .container {padding-top: 20px;}
+    .table, pre {color: #FFF;}
   </style>
   <body>
 
@@ -38,13 +39,17 @@
     <?php
 
 if(isset($_POST['enviar'])){
-    if(in_array(NULL, $_POST)){
-      echo "Algum campo está vazio";
-    }
-    }else{
-/*             echo "Seu nome é:{$_POST['nome']}<br>";
-            echo "Seu e-mail é:{$_POST['email']}<br>";
-            echo "Sua mensagem é: <pre>{$_POST['mensagem']}</pre>"; */
+    if(in_array(NULL, $_POST)):
+?>
+        <div class="alert alert-primary text-center" role="alert">
+          Algum campo está vazio!
+        </div>
+        <p>
+          <a href="/">Voltar</a>
+        </p>
+<?php
+    else:
+        extract($_POST);
 ?>
               <table class="table table-bordered">
                 <thead>
@@ -58,10 +63,10 @@ if(isset($_POST['enviar'])){
                 <tbody>
                   <tr>
                     <th scope="row">1</th>
-                    <td><?php echo $_POST['nome']?></td>
-                    <td><?php echo $_POST['email']?></td>
+                    <td><?php echo $nome; ?></td>
+                    <td><?php echo $email; ?></td>
                     <td>
-                      <pre><?php echo $_POST['mensagem']?></pre>
+                      <pre><?php echo $mensagem; ?></pre>
                     </td>
                   </tr>
                 </tbody>
@@ -69,13 +74,13 @@ if(isset($_POST['enviar'])){
 
               <p>
                 <a href="/">Voltar</a>
-    </p>
+              </p>
             
 
 <?php
 
 
-          }
+    endif;
  }else{
 ?>
 
@@ -101,7 +106,7 @@ if(isset($_POST['enviar'])){
         <input type="checkbox" class="form-check-input" id="exampleCheck1">  
         <label class"form-check-label" for="exampleCheck1">Enviar</label>
       </div> -->
-      <button type="submit" class="btn btn-primary" name="enviar">Enviar</button>
+      <button type="submit" class="btn btn-primary" name="enviar" value="Enviar">Enviar</button>
       </form>
 
 
