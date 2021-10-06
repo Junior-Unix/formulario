@@ -1,3 +1,25 @@
+<?php 
+  if(isset($_GET) && !empty($_GET)){
+    if(isset($_GET['deletar'])){
+      echo "DELETE A LINHA: " . $_GET['deletar'];
+      $d = $_GET['deletar'];
+
+      $conexao = new mysqli("localhost", "root", "0008", "unix");
+        if("$conexao->connect_error"){
+          $sql = "DELETE FROM dados WHERE id="$d";
+            if($conexao->query($sql) === TRUE){
+              echo "Dados";
+            }else{
+              echo "Falha";
+        }
+        }else{
+          echo "Erro ao conectar!";
+              }else{
+                echo "ATUALIZE A LINHA: " . $_GET['atualizar'];
+              }
+    }
+?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -21,6 +43,7 @@
     body{background: #504477; color: #FFF;}
     .container {padding-top: 20px;}
     .table, pre {color: #FFF;}
+    a {color: #fff; font-weigth:bold;}
   </style>
   <body>
 
@@ -48,48 +71,10 @@ if(isset($_POST['enviar'])):
           <a href="/">Voltar</a>
         </p>
 <?php else: extract($_POST); ?>
-<?php require_once("gravar.php"); ?>
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th scope="col">Identificação</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">E-mail</th>
-                    <th scope="col">Mensagem</th> 
-                  </tr>
-                </thead>
-                <tbody>
-<?php
-    if(file_exists("dados.txt")){
-      $fp = fopen("dados.txt", "r");
-      $i = 1;
-        while(!feof($fp)){
-          $linha_atual = fgets($fp);
-            if(!empty($linha_atual)){
-              $ex = explode(";", $linha_atual); 
-        
-?>
-  
-                <tr>
-                    <td><?php echo  $i; ?></td>
-                    <td><?php echo $ex[0]; ?></td>
-                    <td><?php echo $ex[1]; ?></td>
-                    <td><?php echo $ex[2]; ?></td>
 
-                </tr>
-            <?php 
-            $i++;         
-        }
-
-    }
-
-    fclose($fp);
-}else{
-    echo "Não existe!";
-}
-?>
-                </tbody>
-              </table>
+<div class="alert alert-success" role="alert">
+  <?php require_once("gravar.php"); ?>
+</div>
 
               <p>
                 <a href="/">Voltar</a>
@@ -115,18 +100,54 @@ if(isset($_POST['enviar'])):
         <label>Mensagem</label>
         <textarea type="text" name="mensagem" class="form-control"></textarea>
       </div>
-
-<!--       <div class="form-group form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">  
-        <label class"form-check-label" for="exampleCheck1">Enviar</label>
-      </div> -->
       <button type="submit" class="btn btn-primary" name="enviar" value="Enviar">Enviar</button>
       </form>
 
 
 <?php endif; ?>
-</div>
-    
+
+<hr>
+  </div>
+  <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th scope="col">Identificação</th>
+        <th scope="col">Nome</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Mensagem</th>
+        <th scope="col">Deletar</th>
+        <th scope="col">Atualizar</th>  
+      </tr>
+    </thead>
+    <tbody>
+<?php
+  $conexao = new mysqli("localhost", "root", "0008", "unix");
+    if(!$conexao->connect_error){
+      $sql = "SELECT * FROM dados";
+      $resultado = $conexao->query($sql);
+        if($resultado){
+          while($ex = $resultado->fetch_assoc()){
+?>
+
+  <tr>
+    <td><?php echo $ex['id']; ?></td>
+    <td><?php echo $ex['nome']; ?></td>
+    <td><?php echo $ex['email']; ?></td>
+    <td><?php echo $ex['mensagem']; ?></td>
+    <td><a href="?deletar=<?php echo $ex['id']; ?>">x</a></td>
+    <td><a href="?atualizar=<?php echo $ex['id']; ?>">-></a></td>
+  </tr>
+
+<?php
+    }
+      }else{
+        echo "Erro ao listar!";
+      }
+    }
+?>
+
+  </tbody>
+  </table>   
 
   </body>
 </html>

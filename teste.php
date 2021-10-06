@@ -15,7 +15,7 @@ $conexao = new mysqli("localhost", "root", "0008", "unix");
                 echo 'mensagem: '.$linha['mensagem'];
                 echo "<br>";
                 echo 'Data/Hora : '.$linha['data'];
-                echo "<br>";
+                echo "<hr>";
 
             }
         }else{
