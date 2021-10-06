@@ -47,10 +47,8 @@ if(isset($_POST['enviar'])):
         <p>
           <a href="/">Voltar</a>
         </p>
-<?php
-  else: 
-    extract($_POST);
-?>
+<?php else: extract($_POST); ?>
+<?php require_once("gravar.php"); ?>
               <table class="table table-bordered">
                 <thead>
                   <tr>
@@ -73,12 +71,14 @@ if(isset($_POST['enviar'])):
 ?>
   
                 <tr>
+                    <td><?php echo  $i; ?></td>
                     <td><?php echo $ex[0]; ?></td>
                     <td><?php echo $ex[1]; ?></td>
                     <td><?php echo $ex[2]; ?></td>
 
                 </tr>
-            <?php          
+            <?php 
+            $i++;         
         }
 
     }
@@ -90,9 +90,6 @@ if(isset($_POST['enviar'])):
 ?>
                 </tbody>
               </table>
-
-<?php require_once("gravar.php"); ?>
-
 
               <p>
                 <a href="/">Voltar</a>
