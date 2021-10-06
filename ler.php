@@ -1,4 +1,11 @@
+<table border="1">
+    <tr>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Mensagem</th>
+    </tr>
 <?php
+
 
 if(file_exists("dados.txt")){
     $fp = fopen("dados.txt", "r");
@@ -9,7 +16,7 @@ if(file_exists("dados.txt")){
             $ex = explode(";", $linha_atual); 
             
             ?>
-            <table border="1">
+  
                 <tr>
                     <td><?php echo $ex[0]; ?></td>
                     <td><?php echo $ex[1]; ?></td>
@@ -27,4 +34,6 @@ if(file_exists("dados.txt")){
 }
 
 
+
 ?>
+</table>

@@ -61,14 +61,33 @@ if(isset($_POST['enviar'])):
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td><?php echo $nome; ?></td>
-                    <td><?php echo $email; ?></td>
-                    <td>
-                      <pre><?php echo $mensagem; ?></pre>
-                    </td>
-                  </tr>
+<?php
+    if(file_exists("dados.txt")){
+      $fp = fopen("dados.txt", "r");
+      $i = 1;
+        while(!feof($fp)){
+          $linha_atual = fgets($fp);
+            if(!empty($linha_atual)){
+              $ex = explode(";", $linha_atual); 
+        
+?>
+  
+                <tr>
+                    <td><?php echo $ex[0]; ?></td>
+                    <td><?php echo $ex[1]; ?></td>
+                    <td><?php echo $ex[2]; ?></td>
+
+                </tr>
+            <?php          
+        }
+
+    }
+
+    fclose($fp);
+}else{
+    echo "Não existe!";
+}
+?>
                 </tbody>
               </table>
 
