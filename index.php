@@ -3,18 +3,21 @@
     if(isset($_GET['deletar'])){
       echo "DELETE A LINHA: " . $_GET['deletar'];
       $d = $_GET['deletar'];
-
       $conexao = new mysqli("localhost", "root", "0008", "unix");
-        if("$conexao->connect_error"){
-          $sql = "DELETE FROM dados WHERE id="$d";
+
+        if(!$conexao->connect_error){
+
+          $sql = "DELETE FROM dados WHERE id='$d'";
             if($conexao->query($sql) === TRUE){
-              echo "Dados";
+              echo "Deleted $d com sucesso!";
+              header("location: .\\");
             }else{
-              echo "Falha";
+              echo "Falha ao deletar $d!";
         }
         }else{
           echo "Erro ao conectar!";
-              }else{
+        }       
+        }else{
                 echo "ATUALIZE A LINHA: " . $_GET['atualizar'];
               }
     }
