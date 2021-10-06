@@ -17,6 +17,10 @@
    
     <title>Formulário de Contato</title>
   </head>
+  <style media="screen">
+    body{background: #504477; color: #FFF;}
+    .container {padding-top: 20px;}
+  </style>
   <body>
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -34,12 +38,9 @@
     <?php
 
 if(isset($_POST['enviar'])){
-    if(empty($_POST['nome'])){
-        echo"Preencha seu nome";
-    }elseif(empty($_POST['email'])){
-        echo "Preencha seu e-mail.";
-    }elseif(empty($_POST['mensagem'])){
-        echo "Preencha sua mensagem";
+    if(in_array(NULL, $_POST)){
+      echo "Algum campo está vazio";
+    }
     }else{
 /*             echo "Seu nome é:{$_POST['nome']}<br>";
             echo "Seu e-mail é:{$_POST['email']}<br>";
@@ -48,7 +49,7 @@ if(isset($_POST['enviar'])){
               <table class="table table-bordered">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Identificação</th>
                     <th scope="col">Nome</th>
                     <th scope="col">E-mail</th>
                     <th scope="col">Mensagem</th> 
@@ -65,6 +66,11 @@ if(isset($_POST['enviar'])){
                   </tr>
                 </tbody>
               </table>
+
+              <p>
+                <a href="/">Voltar</a>
+    </p>
+            
 
 <?php
 
