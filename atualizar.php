@@ -1,5 +1,5 @@
 <h1 class="text-center">Formulário de Contado</h1>
-      <form action="/" method="post">
+      <form action="?atualizar=<?php echo $ar['id']; ?>&update=1" method="post">
       <div class="form-group">  
         <label>Nome</label>
         <input type="text" name="nome" class="form-control" aria-describedby="emailHelp" value="<?php echo $ar['nome']; ?>">
