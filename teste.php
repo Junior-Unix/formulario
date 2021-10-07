@@ -1,5 +1,5 @@
 <?php
-
+exit;
 $conexao = new mysqli("localhost", "root", "0008", "unix");
     if(!$conexao->connect_error){
         $sql = "SELECT * FROM dados";
@@ -32,6 +32,7 @@ if(!$conexao->connect_error){
     
         if($conexao->query($sql) === TRUE){
             echo "Inseridos.";
+
         }else{
             echo "Erro ao conectar/inserir dados!";
     }

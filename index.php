@@ -1,7 +1,7 @@
 <?php 
   if(isset($_GET) && !empty($_GET)){
     if(isset($_GET['deletar'])){
-      echo "DELETE A LINHA: " . $_GET['deletar'];
+//      echo "DELETE A LINHA: " . $_GET['deletar'];
       $d = $_GET['deletar'];
       $conexao = new mysqli("localhost", "root", "0008", "unix");
 
@@ -10,21 +10,31 @@
           $sql = "DELETE FROM dados WHERE id='$d'";
             if($conexao->query($sql) === TRUE){
               echo "Deleted $d com sucesso!";
-              header("location: .\\");
+              header("location: /");
             }else{
               echo "Falha ao deletar $d!";
-        }
-        }else{
-          echo "Erro ao conectar!";
-        }       
-        }else{
-                echo "ATUALIZE A LINHA: " . $_GET['atualizar'];
-              }
+            }
+            }else{
+              echo "Erro ao conectar!";
+            }       
+            }else{
+              require_once('head.php');
+              $a = $_GET['atualizar'];
+              $conexao = new mysqli("localhost", "root", "0008", "unix");
+              $r = $conexao->query($sql);
+              $ar = $r->fetch_assoc();
+              
+
+              $sql = "SELECT * FROM dados WHERE id='$a'";
+              require_once('atualizar.php');
+              echo "\n</div>\n</body>\n</html>";
+              $conexao->close();
+              exit;
+            }
     }
 ?>
-
-
-    <?php require_once('head.php');
+<?php 
+require_once('head.php');
 
 if(isset($_POST['enviar'])):
     if(in_array(NULL, $_POST)):
@@ -33,7 +43,7 @@ if(isset($_POST['enviar'])):
           Algum campo está vazio!
         </div>
         <p>
-          <a href="/">Voltar</a>
+          <a href=/">Voltar</a>
         </p>
 <?php else: extract($_POST); ?>
 
@@ -47,27 +57,6 @@ if(isset($_POST['enviar'])):
             
 
 <?php endif; else: ?>
-
-
-    <h1 class="text-center">Formulário de Contado</h1>
-      <form action="/" method="post">
-      <div class="form-group">  
-        <label>Nome</label>
-        <input type="text" name="nome" class="form-control" aria-describedby="emailHelp">
-      </div>
-
-      <div class="form-group">  
-        <label>E-mail</label>
-        <input type="text" name="email" class="form-control">
-      </div>
-
-      <div class="form-group">  
-        <label>Mensagem</label>
-        <textarea type="text" name="mensagem" class="form-control"></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" name="enviar" value="Enviar">Enviar</button>
-      </form>
-
 
 <?php endif; ?>
 
@@ -114,5 +103,3 @@ if(isset($_POST['enviar'])):
   </tbody>
   </table>   
 
-  </body>
-</html>
