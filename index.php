@@ -3,6 +3,7 @@
     if(isset($_GET['deletar'])){
 //      echo "DELETE A LINHA: " . $_GET['deletar'];
       $d = $_GET['deletar'];
+
       $conexao = new mysqli("localhost", "root", "0008", "unix");
 
         if(!$conexao->connect_error){
